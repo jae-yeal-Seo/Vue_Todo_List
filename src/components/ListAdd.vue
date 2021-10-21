@@ -6,6 +6,7 @@
           label="Outlined textarea"
           value=""
         ></v-textarea> 
+        
 <v-btn @click="listAdd">
 
 </v-btn>
