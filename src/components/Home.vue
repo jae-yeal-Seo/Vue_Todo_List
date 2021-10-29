@@ -6,10 +6,10 @@
       @statusControl="statusControl"/>
     </v-flex>
     <v-flex xs6 pa-2>
-       <ListAdd @listAdd="listAdd" />
+       <ListAdd @listAdd="listAdd"
+                @listEdit="listEdit"/>
     </v-flex>
   </v-layout>
-
 </v-container>
 </template>
 
@@ -35,6 +35,10 @@ export default {
     },
     listDelete(index){
       this.todoList.splice(index,1);
+    },
+    listEdit(memo,index){
+      
+      this.todoList[index].memo = memo
     }
   },
   created(){
