@@ -7,8 +7,8 @@
           value=""
         ></v-textarea> 
         
-<v-btn @click="listAdd">리스트 추가</v-btn>
-<v-btn @click="listEdit">리스트 수정</v-btn>
+<v-btn v-if="mode === 'add'" @click="listAdd">리스트 추가</v-btn>
+<v-btn v-else @click="listEdit">리스트 수정</v-btn>
            
 </div>
 </template>
@@ -19,7 +19,8 @@ export default{
   data(){
       return {
           memo:null,
-          index:null
+          index:null,
+          mode:"add"
       }
   },
   methods:{
@@ -38,6 +39,7 @@ export default{
              this.$emit("listEdit",this.memo, this.index);
          }
          this.memo = null
+         this.mode = "add"
       }
   },
   created(){
@@ -45,6 +47,7 @@ export default{
       eventBus.$on('listEdit',(memo,index)=>{
           this.memo = memo;
           this.index = index;
+          this.mode = "edit";
       })
   }
 }

@@ -1,6 +1,11 @@
 <template>
 <v-container>
   <v-layout row wrap>
+    <v-flex xs12 text-xs-center>
+ <h1>투두 리스트</h1>
+    <p>전체 할 일: {{ todoList.length }} / 이미 한 일: {{ countDone }}/ 아직 남은 일: {{todoList.length - countDone}}/</p>
+    </v-flex>
+   
     <v-flex xs6 pa-2>
       <List :todoList="todoList" @listDelete="listDelete"
       @statusControl="statusControl"/>
@@ -25,6 +30,17 @@ export default {
   components:{
     List,
     ListAdd
+  },
+  computed :{
+    countDone(){
+      let count = 0;
+      this.todoList.forEach(list => {
+        if(list.status === 'done'){
+          count++;
+        }
+      })
+      return count;
+    }
   },
   methods:{
     listAdd(memo){
